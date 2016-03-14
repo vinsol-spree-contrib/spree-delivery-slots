@@ -1,0 +1,13 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  activerecord:
+    errors:
+      models:
+        spree/delivery_slot:
+          overlapping_start_time_and_end_time: 'Start time and End time overlaps'
+  spree:
+    end_time: End Time
+    is_any_time_slot: Any time?
+    start_time: Start Time
