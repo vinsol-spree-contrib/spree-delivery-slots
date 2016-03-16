@@ -6,6 +6,8 @@ Spree::Shipment.class_eval do
 
   delegate :is_delivery_slots_enabled?, to: :shipping_method, allow_nil: true
 
+  validates_associated :shipment_delivery_slot, if: :is_delivery_slots_enabled?
+
   before_save :ensure_shipment_delivery_slot_if_required
 
   private

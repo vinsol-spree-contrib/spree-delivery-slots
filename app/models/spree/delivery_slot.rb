@@ -5,7 +5,8 @@ module Spree
     belongs_to :shipping_method, inverse_of: :delivery_slots
 
     validates :shipping_method, :start_time, :end_time, presence: true
-    validates_with ::Spree::DeliverySlotValidator, unless: :deleted?, if: [:start_time?, :end_time?]
+    validates_with ::Spree::TimeFrameValidator, unless: :deleted?, if: [:start_time?, :end_time?]
+    validates_with ::Spree::DeliverySlotUniqueValidator, unless: :deleted?, if: [:start_time?, :end_time?]
 
     scope :any_time, -> { where(is_any_time_slot: true) }
     scope :not_any_time, -> { where(is_any_time_slot: false) }

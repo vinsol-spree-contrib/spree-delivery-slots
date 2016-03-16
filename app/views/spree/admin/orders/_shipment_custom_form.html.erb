@@ -1,4 +1,4 @@
-<div id="<%= "shipment_#{shipment.id}" %>" data-hook="admin_shipment_form" class="panel panel-default">
+<div id="<%= "shipment_#{shipment.id}" %>" data-hook="admin_custom_shipment_form" class="panel panel-default">
 
   <%= render partial: "spree/admin/variants/split", formats: :js %>
 
@@ -61,7 +61,7 @@
           <% if rate = shipment.selected_shipping_rate %>
             <td colspan="4">
               <strong><%= rate.name %></strong><br />
-              <%= "<strong>Delivery Slot : </strong>#{ shipment.delivery_slot.time_frame }".html_safe if shipment.delivery_slot %>
+              <%= "<strong>Delivery Slot : </strong>#{ shipment.delivery_slot.time_frame }".html_safe if shipment.delivery_slot && shipment.shipping_method.is_delivery_slots_enabled? %>
             </td>
             <td class="total text-center">
               <%= shipment.display_cost %>
