@@ -12,3 +12,7 @@ nbproject
 pkg
 *.swp
 spec/dummy
+.rvmrc
+.ruby-gemset
+.ruby-version
+.bundle
