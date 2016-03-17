@@ -8,8 +8,8 @@ module Spree
     validates_with ::Spree::TimeFrameValidator, unless: :deleted?, if: [:start_time?, :end_time?]
     validates_with ::Spree::DeliverySlotUniqueValidator, unless: :deleted?, if: [:start_time?, :end_time?]
 
-    scope :any_time, -> { where(is_any_time_slot: true) }
-    scope :not_any_time, -> { where(is_any_time_slot: false) }
+    before_update :create_duplicate_delivery_slot, if: :time_changed?
+    before_update :reload_and_set_deleted_at, if: :time_changed?
 
     def start_time
       self[:start_time].try(:in_time_zone)
@@ -25,11 +25,22 @@ module Spree
     end
 
     def time_frame
-      if is_any_time_slot?
-        'Any Time'
-      else
-        "#{ start_time.strftime('%I:%M %P') } - #{ end_time.strftime('%I:%M %P') }"
-      end
+      "#{ start_time.strftime('%I:%M %P') } - #{ end_time.strftime('%I:%M %P') }"
     end
+
+    private
+      def create_duplicate_delivery_slot
+        new_delivery_slot = self.dup
+        new_delivery_slot.save(validate: false)
+      end
+
+      def reload_and_set_deleted_at
+        self.reload
+        self.deleted_at = Time.current
+      end
+
+      def time_changed?
+        start_time_changed? || end_time_changed?
+      end
   end
 end

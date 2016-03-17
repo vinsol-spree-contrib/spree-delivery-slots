@@ -3,14 +3,7 @@ Spree::ShippingMethod.class_eval do
 
   accepts_nested_attributes_for :delivery_slots, allow_destroy: true, reject_if: :all_blank
 
-  before_save :build_any_time_delivery_slot, if: [:is_delivery_slots_enabled?, :any_time_delivery_slot_absent?]
-
-  private
-    def build_any_time_delivery_slot
-      self.delivery_slots.any_time.build
-    end
-
-    def any_time_delivery_slot_absent?
-      delivery_slots.any_time.empty?
-    end
+  def delivery_slots_time_frames
+    [['Any time', nil]].concat(delivery_slots.map { |delivery_slot| [delivery_slot.time_frame, delivery_slot.id] })
+  end
 end

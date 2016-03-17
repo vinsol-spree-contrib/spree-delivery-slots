@@ -1,24 +1,30 @@
 Spree::Shipment.class_eval do
-  has_one :shipment_delivery_slot, dependent: :destroy, inverse_of: :shipment
-  has_one :delivery_slot, through: :shipment_delivery_slot
-
-  accepts_nested_attributes_for :shipment_delivery_slot, update_only: true, reject_if: :all_blank
+  belongs_to :delivery_slot
 
   delegate :is_delivery_slots_enabled?, to: :shipping_method, allow_nil: true
 
-  validates_associated :shipment_delivery_slot, if: :is_delivery_slots_enabled?
+  validate :verify_delivery_slot, if: [:is_delivery_slots_enabled?, :delivery_slot]
 
-  before_save :ensure_shipment_delivery_slot_if_required
+  before_save :ensure_valid_delivery_slot, if: :delivery_slot
+
+  def delivery_slot
+    Spree::DeliverySlot.unscoped { super }
+  end
+
+  def delivery_slot_time_frame
+    delivery_slot ? delivery_slot.time_frame : Spree.t(:any_time)
+  end
 
   private
-    def ensure_shipment_delivery_slot_if_required
-      if is_delivery_slots_enabled? && !shipment_delivery_slot
-        ensure_shipment_delivery_slot
+    def ensure_valid_delivery_slot
+      if shipping_method != delivery_slot.shipping_method
+        self.delivery_slot_id = nil
       end
     end
 
-    def ensure_shipment_delivery_slot
-      any_time_delivery_slot = shipping_method.delivery_slots.any_time.first
-      self.build_shipment_delivery_slot(delivery_slot: any_time_delivery_slot)
+    def verify_delivery_slot
+      if delivery_slot.shipping_method != shipping_method
+        self.errors.add(:delivery_slot_id, :should_belongs_to_correct_shipping_method)
+      end
     end
 end

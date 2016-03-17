@@ -9,6 +9,6 @@ en:
           overlapping_start_time_and_end_time: 'Start time and End time overlaps'
           less_than_end_time: 'must be less than End time'
   spree:
+    any_time: Any time
     end_time: End Time
-    is_any_time_slot: Any time?
     start_time: Start Time

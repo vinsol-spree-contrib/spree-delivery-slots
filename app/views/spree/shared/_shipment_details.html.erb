@@ -5,7 +5,7 @@
       <div>
         <i class='fa fa-truck'></i>
         <%= Spree.t(:shipment_details, stock_location: shipment.stock_location.name, shipping_method: shipment.selected_shipping_rate.name) %><br />
-        <%= "<b>Delivery Slot :</b> #{ shipment.delivery_slot.time_frame }".html_safe if shipment.delivery_slot %>
+        <%= "<b>Delivery Slot :</b> #{ shipment.delivery_slot_time_frame }".html_safe if shipment.delivery_slot %>
       </div>
     <% end %>
   </div>

@@ -44,19 +44,23 @@
                 <span class="badge rate-cost"><%= rate.display_cost %></span>
               </label>
 
-              <%= ship_form.fields_for :shipment_delivery_slot, ship_form.object.shipment_delivery_slot || ship_form.object.build_shipment_delivery_slot do |shipment_delivery_slot_form| %>
-                <% if rate.shipping_method.is_delivery_slots_enabled? %>
-                  <ul class="list-group delivery-slots <%= "delivery_slots_#{ rate.shipping_method.id }" %>">
-                    <% rate.shipping_method.delivery_slots.order(:start_time).each do |delivery_slot| %>
-                      <li class="list-group-item delivery-slot">
-                        <label>
-                          <%= shipment_delivery_slot_form.radio_button :delivery_slot_id, delivery_slot.id %>
-                          <span><%= delivery_slot.time_frame %></span>
-                        </label>
-                      </li>
-                    <% end %>
-                  </ul>
-                <% end %>
+              <% if rate.shipping_method.is_delivery_slots_enabled? %>
+                <ul class="list-group delivery-slots <%= "delivery_slots_#{ rate.shipping_method.id }" %>">
+                  <li class="list-group-item delivery-slot">
+                    <label>
+                      <%= ship_form.radio_button :delivery_slot_id, nil %>
+                      <span><%= 'Any time' %></span>
+                    </label>
+                  </li>
+                  <% rate.shipping_method.delivery_slots.order(:start_time).each do |delivery_slot| %>
+                    <li class="list-group-item delivery-slot">
+                      <label>
+                        <%= ship_form.radio_button :delivery_slot_id, delivery_slot.id %>
+                        <span><%= delivery_slot.time_frame %></span>
+                      </label>
+                    </li>
+                  <% end %>
+                </ul>
               <% end %>
             </li>
           <% end %>

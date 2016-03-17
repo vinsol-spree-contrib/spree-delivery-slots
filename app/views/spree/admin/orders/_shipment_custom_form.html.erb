@@ -1,4 +1,4 @@
-<div id="<%= "shipment_#{shipment.id}" %>" data-hook="admin_custom_shipment_form" class="panel panel-default">
+<div id="<%= "shipment_#{shipment.id}" %>" data-hook="admin_shipment_form" class="panel panel-default">
 
   <%= render partial: "spree/admin/variants/split", formats: :js %>
 
@@ -39,9 +39,9 @@
               <% shipment.shipping_rates.includes(:shipping_method).each do |shipping_rate| %>
                 <% if shipping_rate.shipping_method.is_delivery_slots_enabled? %>
                   <div class='select_delivery_slot select_delivery_slot_<%= shipping_rate.id %>'>
-                    <%= label_tag 'shipment_delivery_slot[delivery_slot_id]', Spree.t(:delivery_slot) %>
-                    <%= select_tag 'shipment_delivery_slot[delivery_slot_id]',
-                      options_for_select(shipping_rate.shipping_method.delivery_slots.map { |delivery_slot| [delivery_slot.time_frame, delivery_slot.id] }, shipment.try(:shipment_delivery_slot).try(:delivery_slot_id)),
+                    <%= label_tag :delivery_slot_id, Spree.t(:delivery_slot) %>
+                    <%= select_tag :delivery_slot_id,
+                      options_for_select(shipping_rate.shipping_method.delivery_slots_time_frames, shipment.delivery_slot_id),
                       { class: "select2", data: {'shipment-number' => shipment.number } } %>
                     </div>
                 <% end %>
@@ -51,7 +51,7 @@
           <td class="actions text-center">
             <% if can? :update, shipment %>
               <%= link_to_with_icon 'cancel', Spree.t('actions.cancel'), "#", class: 'cancel-method btn btn-primary btn-sm', data: {action: 'cancel'}, title: Spree.t('actions.cancel'), no_text: true %>
-              <%= link_to_with_icon 'save', Spree.t('actions.save'), "#", class: 'save-method btn btn-success btn-sm', data: {'shipment-number' => shipment.number, action: 'save'}, title: Spree.t('actions.save'), no_text: true %>
+              <%= link_to_with_icon 'save', Spree.t('actions.save'), "#", class: 'save-shipment-method btn btn-success btn-sm', data: {'shipment-number' => shipment.number, action: 'save'}, title: Spree.t('actions.save'), no_text: true %>
             <% end %>
           </td>
         </tr>
@@ -61,7 +61,7 @@
           <% if rate = shipment.selected_shipping_rate %>
             <td colspan="4">
               <strong><%= rate.name %></strong><br />
-              <%= "<strong>Delivery Slot : </strong>#{ shipment.delivery_slot.time_frame }".html_safe if shipment.delivery_slot && shipment.shipping_method.is_delivery_slots_enabled? %>
+              <%= "<strong>Delivery Slot : </strong>#{ shipment.delivery_slot_time_frame }".html_safe if shipment.shipping_method.is_delivery_slots_enabled? %>
             </td>
             <td class="total text-center">
               <%= shipment.display_cost %>
