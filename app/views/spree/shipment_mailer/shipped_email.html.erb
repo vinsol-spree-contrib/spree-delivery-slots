@@ -20,7 +20,7 @@
         <% end %>
       </table>
       <p>
-        <%= Spree.t('shipment_mailer.shipped_email.delivery_slot', time_frame: @shipment.delivery_slot_time_frame) if @shipment.is_delivery_slot_enabled? %>
+        <%= Spree.t('shipment_mailer.shipped_email.delivery_slot', time_frame: @shipment.delivery_slot_time_frame) if @shipment.is_delivery_slots_enabled? %>
       </p>
       <p>
         <%= Spree.t('shipment_mailer.shipped_email.track_information', tracking: @shipment.tracking)     if @shipment.tracking %>
