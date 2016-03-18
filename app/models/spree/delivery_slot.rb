@@ -8,15 +8,15 @@ module Spree
     validates_with ::Spree::TimeFrameValidator, unless: :deleted?, if: [:start_time?, :end_time?]
     validates_with ::Spree::DeliverySlotUniqueValidator, unless: :deleted?, if: [:start_time?, :end_time?]
 
-    before_update :create_duplicate_delivery_slot, if: :time_changed?
-    before_update :reload_and_set_deleted_at, if: :time_changed?
+    before_update :create_duplicate_delivery_slot, if: :time_frame_changed?
+    before_update :reload_and_set_deleted_at, if: :time_frame_changed?
 
     def start_time
-      self[:start_time].try(:in_time_zone)
+      super.try(:in_time_zone)
     end
 
     def end_time
-      self[:end_time].try(:in_time_zone)
+      super.try(:in_time_zone)
     end
 
     def overlaps_with?(other_delivery_slot)
@@ -25,12 +25,14 @@ module Spree
     end
 
     def time_frame
-      "#{ start_time.strftime('%I:%M %P') } - #{ end_time.strftime('%I:%M %P') }"
+      "#{ I18n.l(start_time, format: :frame_time) } - #{ I18n.l(end_time, format: :frame_time) }"
     end
 
     private
       def create_duplicate_delivery_slot
         new_delivery_slot = self.dup
+        ## `new_delivery_slot` is not required to validate here.
+        ## As all its values are already through original time slot.
         new_delivery_slot.save(validate: false)
       end
 
@@ -39,7 +41,7 @@ module Spree
         self.deleted_at = Time.current
       end
 
-      def time_changed?
+      def time_frame_changed?
         start_time_changed? || end_time_changed?
       end
   end

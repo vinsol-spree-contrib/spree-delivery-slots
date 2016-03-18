@@ -6,8 +6,13 @@ en:
     errors:
       models:
         spree/delivery_slot:
-          overlapping_start_time_and_end_time: 'Start time and End time overlaps'
+          overlapping_start_time_and_end_time: 'Start time and End time are overlapping.'
           less_than_end_time: 'must be less than End time'
+        spree/shipment:
+          should_belongs_to_correct_shipping_method: 'must belong to correct shipping method.'
+  time:
+    formats:
+      frame_time: '%I:%M %P'
   spree:
     any_time: Any time
     end_time: End Time

@@ -17,7 +17,7 @@ Spree::Shipment.class_eval do
 
   private
     def ensure_valid_delivery_slot
-      if shipping_method != delivery_slot.shipping_method
+      unless is_delivery_slots_enabled?
         self.delivery_slot_id = nil
       end
     end

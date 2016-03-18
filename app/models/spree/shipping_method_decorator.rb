@@ -4,6 +4,6 @@ Spree::ShippingMethod.class_eval do
   accepts_nested_attributes_for :delivery_slots, allow_destroy: true, reject_if: :all_blank
 
   def delivery_slots_time_frames
-    [['Any time', nil]].concat(delivery_slots.map { |delivery_slot| [delivery_slot.time_frame, delivery_slot.id] })
+    [[Spree.t(:any_time), nil]].concat(delivery_slots.map { |delivery_slot| [delivery_slot.time_frame, delivery_slot.id] })
   end
 end
