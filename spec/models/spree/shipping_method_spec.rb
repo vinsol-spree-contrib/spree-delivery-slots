@@ -13,7 +13,9 @@ module Spree
     describe '#delivery_slots_time_frames' do
       let!(:delivery_slot_enabled_shipping_method) { create(:shipping_method, is_delivery_slots_enabled: true) }
       let!(:delivery_slot1) { delivery_slot_enabled_shipping_method.delivery_slots.create!(start_time: Time.current + 2.hours, end_time: Time.current + 4.hours) }
-      let!(:delivery_slot2) { delivery_slot_enabled_shipping_method.delivery_slots.create!(start_time: Time.current + 2.hours, end_time: Time.current + 4.hours) }
+      let!(:delivery_slot2) { delivery_slot_enabled_shipping_method.delivery_slots.create!(start_time: Time.current + 4.hours, end_time: Time.current + 6.hours) }
+
+      subject { delivery_slot_enabled_shipping_method.delivery_slots_time_frames }
 
       it { is_expected.to include([delivery_slot1.time_frame, delivery_slot1.id]) }
       it { is_expected.to include([delivery_slot2.time_frame, delivery_slot2.id]) }
