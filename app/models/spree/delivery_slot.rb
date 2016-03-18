@@ -5,8 +5,7 @@ module Spree
     belongs_to :shipping_method, inverse_of: :delivery_slots
 
     validates :shipping_method, :start_time, :end_time, presence: true
-    validates_with ::Spree::TimeFrameValidator, unless: :deleted?, if: [:start_time?, :end_time?]
-    validates_with ::Spree::DeliverySlotUniqueValidator, unless: :deleted?, if: [:start_time?, :end_time?]
+    validates_with ::Spree::TimeFrameValidator, ::Spree::DeliverySlotUniqueValidator, unless: :deleted?, if: [:start_time?, :end_time?]
 
     before_update :create_duplicate_delivery_slot, if: :time_frame_changed?
     before_update :reload_and_set_deleted_at, if: :time_frame_changed?
