@@ -17,3 +17,5 @@ en:
     any_time: Any time
     end_time: End Time
     start_time: Start Time
+    shipped_email:
+      delivery_slot: "Delivery Slot: %{time_frame}"
