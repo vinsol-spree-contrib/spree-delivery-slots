@@ -1,0 +1,7 @@
+<div data-hook="admin_shipping_method_form_delivery_slot_enabled_field" class="col-md-4">
+  <%= f.field_container :is_delivery_slots_enabled, class: ['form-group'] do %>
+    <%= f.label :is_delivery_slots_enabled, Spree.t(:is_delivery_slots_enabled) %>
+    <%= f.check_box :is_delivery_slots_enabled, class: 'form-control' %>
+    <%= error_message_on :shipping_method, :is_delivery_slots_enabled %>
+  <% end %>
+</div>

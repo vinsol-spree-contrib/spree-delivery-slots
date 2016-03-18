@@ -1,0 +1,39 @@
+<% if @shipping_method.is_delivery_slots_enabled? %>
+  <div class="row">
+    <div data-hook="admin_shipping_method_form_delivery_slots_fields" class="col-md-6">
+      <div data-hook class="panel panel-default">
+        <div class="panel-heading">
+          <h1 class="panel-title">
+            <%= Spree.t(:delivery_slot) %>
+          </h1>
+        </div>
+
+        <div class="panel-body">
+          <%= button_link_to(Spree.t(:add_delivery_slot), "javascript:;", { icon: 'add', 'data-target' => "tbody#delivery_slots", class: 'btn-success spree_add_fields' }) %>
+          <div class="form-group">
+            <div class="delivery-slot-settings">
+              <table class="table" data-hook>
+                <thead>
+                  <tr>
+                    <th colspan="2"><%= Spree.t(:start_time) %></th>
+                    <th><%= Spree.t(:end_time) %></th>
+                    <th class="actions"></th>
+                  </tr>
+                </thead>
+                <tbody id="delivery_slots" data-hook>
+                  <%= f.fields_for :delivery_slots, f.object.delivery_slots.present? ? f.object.delivery_slots.sort_by(&:start_time) : f.object.delivery_slots.build do |delivery_slot_form| %>
+                    <tr>
+                      <td><%= delivery_slot_form.time_field :start_time %><td>
+                      <td><%= delivery_slot_form.time_field :end_time %></td>
+                      <td class="actions actions-1 text-center"><%= delivery_slot_form.hidden_field :id %><%= delivery_slot_form.hidden_field(:_destroy) %><%= link_to_with_icon('delete', '', '#', class: "spree_remove_fields btn btn-sm btn-danger", data: { action: 'remove' }, title: Spree.t(:remove)) %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
