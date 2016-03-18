@@ -16,6 +16,7 @@ en:
   spree:
     any_time: Any time
     end_time: End Time
+    shipment_mailer:
+      shipped_email:
+        delivery_slot: 'Delivery Slot: %{time_frame}'
     start_time: Start Time
-    shipped_email:
-      delivery_slot: "Delivery Slot: %{time_frame}"
