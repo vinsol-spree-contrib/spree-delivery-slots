@@ -7,6 +7,14 @@ $(document).ready(function(){
   $('.select_delivery_slot').hide();
   $('.select_delivery_slot_' + $('select.select_shipping_rates').val()).show();
 
+  $('.toggle_target').on('click', function(){
+    if($(this).prop('checked')) {
+      $($(this).data('target')).show();
+    } else {
+      $($(this).data('target')).hide();
+    }
+  });
+
   $('[data-hook=admin_shipment_form] a.save-shipment-method').on('click', function (event) {
     event.preventDefault();
 
