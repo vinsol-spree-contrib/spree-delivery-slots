@@ -21,11 +21,15 @@
                 </tr>
               </thead>
               <tbody id="delivery_slots" data-hook>
-                <%= f.fields_for :delivery_slots, f.object.delivery_slots.present? ? f.object.delivery_slots.sort_by(&:start_time) : f.object.delivery_slots.build do |delivery_slot_form| %>
+                <%= f.fields_for :delivery_slots, f.object.delivery_slots.sort_by(&:start_time).push(f.object.delivery_slots.build) do |delivery_slot_form| %>
                   <tr>
                     <td><%= delivery_slot_form.time_field :start_time %><td>
                     <td><%= delivery_slot_form.time_field :end_time %></td>
-                    <td class="actions actions-1 text-center"><%= delivery_slot_form.hidden_field :id %><%= delivery_slot_form.hidden_field(:_destroy) %><%= link_to_with_icon('delete', '', '#', class: "spree_remove_fields btn btn-sm btn-danger", data: { action: 'remove' }, title: Spree.t(:remove)) %></td>
+                    <td class="actions actions-1 text-center"><%= delivery_slot_form.hidden_field :id %>
+                      <% if delivery_slot_form.object.persisted? %>
+                        <%= delivery_slot_form.hidden_field(:_destroy) %><%= link_to_with_icon('delete', '', '#', class: "spree_remove_fields btn btn-sm btn-danger", data: { action: 'remove' }, title: Spree.t(:remove)) %>
+                      <% end %>
+                    </td>
                   </tr>
                 <% end %>
               </tbody>
