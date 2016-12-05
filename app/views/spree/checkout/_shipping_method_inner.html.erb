@@ -48,7 +48,7 @@
                 <ul class="list-group delivery-slots <%= "delivery_slots_#{ rate.shipping_method.id }" %>">
                   <li class="list-group-item delivery-slot">
                     <label>
-                      <%= ship_form.radio_button :delivery_slot_id, nil %>
+                      <%= ship_form.radio_button :delivery_slot_id, nil, checked: !ship_form.object.delivery_slot_id? %>
                       <span><%= 'Any time' %></span>
                     </label>
                   </li>
