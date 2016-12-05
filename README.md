@@ -1,7 +1,16 @@
-SpreeDeliverySlots
+[SpreeDeliverySlots](https://github.com/vinsol-spree-contrib/spree-delivery-slots)
 ==================
 
-Introduction goes here.
+[SpreeDeliverySlots](https://github.com/vinsol-spree-contrib/spree-delivery-slots) allows customer to select preferred delivery time for his order. Admin can add a number of time slots(ex: 11:00 AM - 3 PM and 4 PM - 9PM) when he can deliver from shipping method edit/new page. Customer will be able to select only from these pre-created time slots.
+
+Features
+--------
+
+* While placing the order customer will be able to select the delivery time while selecting the shipping method.
+
+* Once a order has been placed admin will be able to see the preffered delivery time in order's shipment page and can deliver accordingly.
+
+* Delivery slot info will also be present in shipped email.
 
 Installation
 ------------
@@ -9,7 +18,7 @@ Installation
 Add spree_delivery_slots to your Gemfile:
 
 ```ruby
-gem 'spree_delivery_slots'
+gem 'spree_delivery_slots', git: 'https://github.com/vinsol-spree-contrib/spree-delivery-slots', branch: '3-1-stable'
 ```
 
 Bundle your dependencies and run the installation generator:
@@ -26,14 +35,12 @@ First bundle your dependencies, then run `rake`. `rake` will default to building
 
 ```shell
 bundle
-bundle exec rake
+bundle exec rspec spec
 ```
 
-When testing your applications integration with this extension you may use it's factories.
-Simply add this require statement to your spec_helper:
+Credits
+-------
 
-```ruby
-require 'spree_delivery_slots/factories'
-```
+[![vinsol.com: Ruby on Rails, iOS and Android developers](http://vinsol.com/vin_logo.png "Ruby on Rails, iOS and Android developers")](http://vinsol.com)
 
-Copyright (c) 2016 [name of extension creator], released under the New BSD License
+Copyright (c) 2016 [vinsol.com](http://vinsol.com "Ruby on Rails, iOS and Android developers"), released under the New MIT License
