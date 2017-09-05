@@ -20,7 +20,8 @@ Installation
   #### Spree > 3.3
 
   ```ruby
-    gem 'spree_delivery_slots', git: 'https://github.com/vinsol-spree-contrib/spree-delivery-slots', branch: 'master'  ```
+    gem 'spree_delivery_slots', git: 'https://github.com/vinsol-spree-contrib/spree-delivery-slots', branch: 'master'
+  ```
 
   #### Spree <= 3.3
 
@@ -34,7 +35,7 @@ Installation
 
 2. Install the gem using Bundler:
   ```ruby
-  bundle install
+    bundle install
   ```
 
 3. Copy & run migrations
