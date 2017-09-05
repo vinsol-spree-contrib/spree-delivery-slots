@@ -1,4 +1,4 @@
-class RemoveIsAnyTimeSlotFromSpreeDeliverySlots < ActiveRecord::Migration
+class RemoveIsAnyTimeSlotFromSpreeDeliverySlots < SpreeExtension::Migration[4.2]
   def up
     remove_column :spree_delivery_slots, :is_any_time_slot
   end
