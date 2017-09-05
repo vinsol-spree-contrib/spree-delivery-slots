@@ -3,8 +3,8 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_delivery_slots'
   s.version     = '3.1.0'
-  s.summary     = 'Add gem summary here'
-  s.description = 'Add (optional) gem description here'
+  s.summary     = 'It allows customer to select preferred delivery time for his order'
+  s.description = 'It allows customer to select preferred delivery time for his order. Admin can add a number of time slots(ex: 11:00 AM - 3 PM and 4 PM - 9PM) when he can deliver from shipping method edit/new page. Customer will be able to select only from these pre-created time slots.'
   s.required_ruby_version = '>= 2.0.0'
 
   s.author    = 'Nishant Tuteja'
@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'spree_core', '~> 3.1.0'
 
+  s.add_development_dependency 'appraisal'
   s.add_development_dependency 'capybara', '~> 2.4'
   s.add_development_dependency 'coffee-rails'
   s.add_development_dependency 'database_cleaner'
