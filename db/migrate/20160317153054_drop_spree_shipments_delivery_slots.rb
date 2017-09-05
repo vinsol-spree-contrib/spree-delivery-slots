@@ -1,4 +1,4 @@
-class DropSpreeShipmentsDeliverySlots < ActiveRecord::Migration
+class DropSpreeShipmentsDeliverySlots < SpreeExtension::Migration[4.2]
   def up
     drop_table :spree_shipments_delivery_slots
   end

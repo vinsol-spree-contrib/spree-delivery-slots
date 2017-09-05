@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.version     = '3.2.0'
   s.summary     = 'It allows customer to select preferred delivery time for his order'
   s.description = 'It allows customer to select preferred delivery time for his order. Admin can add a number of time slots(ex: 11:00 AM - 3 PM and 4 PM - 9PM) when he can deliver from shipping method edit/new page. Customer will be able to select only from these pre-created time slots.'
-  s.required_ruby_version = '>= 2.2.1'
+  s.required_ruby_version = '>= 2.2.7'
 
   s.author    = 'Nishant Tuteja'
   s.email     = 'info@vinsol.com'
@@ -16,7 +16,8 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core', '~> 3.2.0.alpha'
+  s.add_dependency 'spree_core', '~> 3.2.0'
+  s.add_dependency 'spree_extension', '~> 0.0.5'
 
   s.add_development_dependency 'appraisal'
   s.add_development_dependency 'capybara', '~> 2.4'
