@@ -16,3 +16,5 @@ spec/dummy
 .ruby-gemset
 .ruby-version
 .bundle
+.ruby-gemset
+gemfiles/*.gemfile.lock
