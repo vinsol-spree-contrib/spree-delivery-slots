@@ -37,7 +37,7 @@
                     options_for_select(shipment.shipping_rates.map {|sr| ["#{sr.name} #{sr.display_price}", sr.id] }, shipment.selected_shipping_rate_id),
                     { class: 'select2 select_shipping_rates', data: {'shipment-number' => shipment.number } } %>
               <% shipment.shipping_rates.includes(:shipping_method).each do |shipping_rate| %>
-                <% if shipping_rate.shipping_method.is_delivery_slots_enabled? %>
+                <% if shipping_rate.shipping_method.try(:is_delivery_slots_enabled?) %>
                   <div class='select_delivery_slot select_delivery_slot_<%= shipping_rate.id %>'>
                     <%= label_tag :delivery_slot_id, Spree.t(:delivery_slot) %>
                     <%= select_tag :delivery_slot_id,
@@ -61,7 +61,7 @@
           <% if rate = shipment.selected_shipping_rate %>
             <td colspan="4">
               <strong><%= rate.name %></strong><br />
-              <%= "<strong>Delivery Slot : </strong>#{ shipment.delivery_slot_time_frame }".html_safe if shipment.shipping_method.is_delivery_slots_enabled? %>
+              <%= "<strong>Delivery Slot : </strong>#{ shipment.delivery_slot_time_frame }".html_safe if shipment.shipping_method.try(:is_delivery_slots_enabled?) %>
             </td>
             <td class="total text-center">
               <%= shipment.display_cost %>
