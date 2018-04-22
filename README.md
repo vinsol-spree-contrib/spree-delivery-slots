@@ -5,6 +5,10 @@ SpreeDeliverySlots allows customer to select preferred delivery time for his ord
 
 Demo
 -----------------------------------
+Try Spree Delivery Slots for Spree Master with direct deployment on Heroku:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vinsol-spree-contrib/spree-demo-heroku/tree/spree-delivery-slots-master)
+
 Try Spree Delivery Slots for Spree 3-4 with direct deployment on Heroku:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vinsol-spree-contrib/spree-demo-heroku/tree/spree-delivery-slots)
