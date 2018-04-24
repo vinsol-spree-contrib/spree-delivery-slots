@@ -3,6 +3,20 @@ SpreeDeliverySlots
 
 SpreeDeliverySlots allows customer to select preferred delivery time for his order. Admin can add a number of time slots(ex: 11:00 AM - 3 PM and 4 PM - 9PM) when he can deliver from shipping method edit/new page. Customer will be able to select only from these pre-created time slots.
 
+Demo
+-----------------------------------
+Try Spree Delivery Slots for Spree Master with direct deployment on Heroku:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vinsol-spree-contrib/spree-demo-heroku/tree/spree-delivery-slots-master)
+
+Try Spree Delivery Slots for Spree 3-4 with direct deployment on Heroku:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vinsol-spree-contrib/spree-demo-heroku/tree/spree-delivery-slots)
+
+Try Spree Delivery Slots for Spree 3-1 with direct deployment on Heroku:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vinsol-spree-contrib/spree-demo-heroku/tree/spree-delivery-slots-3-1)
+
 Features
 --------
 
