@@ -39,7 +39,7 @@
           <% ship_form.object.shipping_rates.includes(shipping_method: :delivery_slots).each do |rate| %>
             <li class="list-group-item shipping-method">
               <label>
-                <%= ship_form.radio_button :selected_shipping_rate_id, rate.id, class: "shipping_rate_radio", data: { target: "delivery_slots_#{ rate.shipping_method.id }" } %>
+                <%= ship_form.radio_button :selected_shipping_rate_id, rate.id, class: "shipping_rate_radio", data: { target: "delivery_slots_#{ rate.shipping_method.id }", behavior: 'shipping-method-selector', cost: rate.display_cost } %>
                 <span class="rate-name"><%= rate.name %></span>
                 <span class="badge rate-cost"><%= rate.display_cost %></span>
               </label>
