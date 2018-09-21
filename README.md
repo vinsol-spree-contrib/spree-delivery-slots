@@ -95,6 +95,12 @@ Testing
   bundle exec rspec spec
   ```
 
+  ## See It In Action
+  
+  <a href="http://www.youtube.com/watch?feature=player_embedded&v=iqbrRheTQNw
+" target="_blank"><img src="http://img.youtube.com/vi/iqbrRheTQNw/0.jpg" 
+alt="Youtube Video Tutorial" /></a>
+
 Contributing
 ------------
 
