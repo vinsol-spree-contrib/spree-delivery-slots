@@ -1,13 +1,13 @@
 <div class="row admin_shipping_method_delivery_slots_row" <%= 'style=display:none;' unless @shipping_method.is_delivery_slots_enabled? %>>
   <div data-hook="admin_shipping_method_form_delivery_slots_fields" class="col-md-12">
-    <div data-hook class="panel panel-default">
-      <div class="panel-heading">
-        <h1 class="panel-title">
+    <div data-hook class="card">
+      <div class="card-header">
+        <h5>
           <%= Spree.t(:delivery_slot) %>
-        </h1>
+        </h5>
       </div>
 
-      <div class="panel-body">
+      <div class="card-body">
         <div class='col-md-10'></div>
         <%= button_link_to(Spree.t(:add_delivery_slot), "javascript:;", { icon: 'add', 'data-target' => "tbody#delivery_slots", class: 'btn-success spree_add_fields' }) %>
         <div class="form-group">

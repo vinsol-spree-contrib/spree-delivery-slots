@@ -1,4 +1,4 @@
-Deface::Override.new(virtual_path: 'spree/shared/_order_details',
+Deface::Override.new(virtual_path: 'spree/orders/show',
   name: 'add_sale_price_to_product_edit',
-  replace: "[data-hook='order-shipment']",
-  partial: 'spree/shared/shipment_details')
+  replace: "dl>div:nth-of-type(3)",
+  partial: 'spree/orders/shipment_details')
