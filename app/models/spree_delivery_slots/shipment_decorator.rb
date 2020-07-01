@@ -1,11 +1,15 @@
-Spree::Shipment.class_eval do
-  belongs_to :delivery_slot
+module SpreeDeliverySlots::ShipmentDecorator
 
-  delegate :is_delivery_slots_enabled?, to: :shipping_method, allow_nil: true
+  def self.prepended(base)
 
-  validate :verify_delivery_slot, if: [:is_delivery_slots_enabled?, :delivery_slot]
+    base.belongs_to :delivery_slot
 
-  before_save :ensure_valid_delivery_slot, if: :delivery_slot
+    base.delegate :is_delivery_slots_enabled?, to: :shipping_method, allow_nil: true
+
+    base.validate :verify_delivery_slot, if: [:is_delivery_slots_enabled?, :delivery_slot]
+
+    base.before_save :ensure_valid_delivery_slot, if: :delivery_slot
+  end
 
   def delivery_slot
     Spree::DeliverySlot.unscoped { super }
@@ -28,3 +32,5 @@ Spree::Shipment.class_eval do
       end
     end
 end
+
+Spree::Shipment.prepend SpreeDeliverySlots::ShipmentDecorator

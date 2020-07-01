@@ -7,7 +7,7 @@ require File.expand_path('../dummy/config/environment.rb',  __FILE__)
 
 require 'rspec/rails'
 require 'database_cleaner'
-require 'factory_girl'
+require 'factory_bot'
 require 'shoulda-matchers'
 require 'ffaker'
 
@@ -24,7 +24,7 @@ require 'spree/testing_support/url_helpers'
 require 'spree_delivery_slots/factories'
 
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   config.infer_spec_type_from_file_location!
   config.use_transactional_fixtures = false

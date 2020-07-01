@@ -1,0 +1,10 @@
+<div data-hook="shipping-details-with-delivery-slot">
+  <dt class="text-uppercase text-center text-lg-left"><%= Spree.t(:shipping) %></dt>
+  <% @order.shipments.valid.each do |shipment| %>
+    <dd class="text-center text-lg-left">
+      <p><%= shipment.shipping_method.name %></p>
+      <p><%= "<b>Delivery Slot :</b> #{ shipment.delivery_slot_time_frame }".html_safe if shipment.delivery_slot %></p>
+      <p><%= link_to_tracking(shipment) if shipment.shipped? %></p>
+    </dd>
+  <% end %>  
+</div>
